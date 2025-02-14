@@ -47,12 +47,15 @@ public class Reverse_string {
     {
         Scanner s = new Scanner(System.in);
         Reverse_string obj = new Reverse_string();
+
         int length = s.nextInt();
+
         char[] arr = new char[length];
         for(int i=0;i<length;i++)
         {
             arr[i] = s.next().charAt(0);
         }
+        
         char[] result = obj.check_rev(arr);
         obj.two_pointer_technique(arr);
         System.out.println("method 1" + new String (result));

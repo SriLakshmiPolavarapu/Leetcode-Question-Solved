@@ -33,6 +33,31 @@ public class Two_sum {
 
     }
 
+    //two sum - when array is sorted
+    //using two-pointer approach
+    //time = O(n), space = O(1)
+    public int[] two_pointer(int[] arr, int target)
+    {
+        int left=0;
+        int right = arr.length-1;
+        while(left < right)
+        {
+            int sum = arr[left] + arr[right];
+            if(sum == target)
+            {
+                return new int[] {left+1, right+1};
+            }
+            else if(sum > target)
+            {
+                right --;
+            }
+            else{
+                left ++;
+            }
+        }
+        return new int[]{-1,-1};
+    }
+
 public static void main(String args[])
 {
     Scanner s = new Scanner(System.in);
@@ -46,8 +71,11 @@ public static void main(String args[])
     int target = s.nextInt();
     int[] result = obj.check(arr, target);
     int[] result1 = obj.check(arr, target);
+    int[] result2 = obj.check(arr,target);
     System.out.println(result[0] + "," + result[1]);
     System.out.println(result1[0] + "," + result1[1]);
+    System.out.println(result2[0] + "," + result2[1]);
+
 
     s.close();
 }
