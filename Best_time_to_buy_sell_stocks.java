@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Best_time_to_buy_sell_stocks {
     
@@ -38,6 +39,25 @@ public class Best_time_to_buy_sell_stocks {
         
     }
 
+    //stack method
+    public int diff_stock_stack(int[] prices)
+    {
+        Stack<Integer> stack = new Stack<>();
+        int maxProfit=0;
+        for(int i=0;i<prices.length;i++)
+        {
+        
+        while(!stack.isEmpty() && prices[i] > prices[stack.peek()])
+        {
+            int buy = stack.pop();
+            int profit = prices[i] - prices[buy];
+            maxProfit = Math.max(maxProfit, profit);
+        }
+        stack.push(i);
+    }
+        return maxProfit;
+    }
+
     public static void main(String[] args)
     {
         Scanner s = new Scanner(System.in);
@@ -50,9 +70,13 @@ public class Best_time_to_buy_sell_stocks {
         }
         int result = obj.diff_stock(prices);
         int result1 = obj.diff_stocks_1(prices);
+        int result2 = obj.diff_stock_stack(prices);
+
 
         System.out.println(result);
         System.out.println(result1);
+        System.out.println(result2);
+
 
         s.close();
     }
